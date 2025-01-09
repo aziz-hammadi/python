@@ -2,13 +2,14 @@
 import sys
 from ft_filter import ft_filter
 
+
 def main():
     """
     The main function that accepts two arguments: a string S and an integer N.
     It outputs a list of words from S that have a length greater than N,
     ignoring punctuation.
 
-    If the number of arguments is not two or if any argument has the wrong type,
+    If the number of arguments is not two or if any argument has the wrong type
     it raises an AssertionError.
     """
     punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
@@ -18,7 +19,7 @@ def main():
 
         # Unpack et validation des arguments
         S, N = sys.argv[1], sys.argv[2]
-        assert N.isdigit(), "AssertionError: The second argument must be an integer."
+        assert N.isdigit(), "AssertionError: the arguments are bad"
         N = int(N)
 
         # Suppression de la ponctuation
@@ -34,6 +35,7 @@ def main():
     except AssertionError as error:
         print(error)
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
