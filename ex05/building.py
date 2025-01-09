@@ -1,6 +1,7 @@
 import sys
 import string
 
+
 def count_characters(input_string):
     """
     Count the types of characters in a given string.
@@ -12,13 +13,16 @@ def count_characters(input_string):
     dict: A dictionary containing counts of character types.
     """
     counts = {
-        'upper': sum(1 for char in input_string if char.isupper()),
-        'lower': sum(1 for char in input_string if char.islower()),
-        'punctuation': sum(1 for char in input_string if char in string.punctuation),
-        'spaces': sum(1 for char in input_string if char.isspace()),  # inclut espaces, tabulations, retours à la ligne, etc.
-        'digits': sum(1 for char in input_string if char.isdigit()),
+        "upper": sum(1 for char in input_string if char.isupper()),
+        "lower": sum(1 for char in input_string if char.islower()),
+        "ponct": sum(1 for char in input_string if char in string.punct),
+        "spaces": sum(
+            1 for char in input_string if char.isspace()
+        ),  # inclut espaces, tabulations, retours à la ligne, etc.
+        "digits": sum(1 for char in input_string if char.isdigit()),
     }
     return counts
+
 
 def display_character_counts(input_string):
     """
@@ -35,6 +39,7 @@ def display_character_counts(input_string):
     print(f"{counts['punctuation']} punctuation marks")
     print(f"{counts['spaces']} spaces")
     print(f"{counts['digits']} digits")
+
 
 def main():
     """
@@ -58,6 +63,7 @@ def main():
             except EOFError:
                 break  # End input on CTRL+D
     display_character_counts(input_string)
+
 
 if __name__ == "__main__":
     main()

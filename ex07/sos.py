@@ -35,8 +35,9 @@ NESTED_MORSE = {
     "6": "-....",
     "7": "--...",
     "8": "---..",
-    "9": "----."
+    "9": "----.",
 }
+
 
 def encode_to_morse(input_string):
     """
@@ -53,15 +54,17 @@ def encode_to_morse(input_string):
     """
     assert isinstance(input_string, str), "AssertionError: the arguments are bad"
     try:
-        return ' '.join(NESTED_MORSE[char.upper()] for char in input_string)
+        return " ".join(NESTED_MORSE[char.upper()] for char in input_string)
     except KeyError:
         raise AssertionError("AssertionError: the arguments are bad")
+
 
 def main():
     """
     Main function to handle the program execution.
     """
     import sys
+
     if len(sys.argv) != 2:
         print("AssertionError: the arguments are bad")
         sys.exit(1)
@@ -70,6 +73,7 @@ def main():
         print(encoded_message)
     except AssertionError as e:
         print(e)
+
 
 if __name__ == "__main__":
     main()
