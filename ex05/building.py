@@ -1,5 +1,6 @@
 import sys
 
+
 def count_characters(input_string):
     """
     Count the types of characters in a given string.
@@ -14,13 +15,16 @@ def count_characters(input_string):
     punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
     counts = {
-        'upper': sum(1 for char in input_string if char.isupper()),
-        'lower': sum(1 for char in input_string if char.islower()),
-        'punct': sum(1 for char in input_string if char in punctuation),
-        'spaces': sum(1 for char in input_string if char.isspace()),  # inclut espaces, tabulations, retours à la ligne, etc.
-        'digits': sum(1 for char in input_string if char.isdigit()),
+        "upper": sum(1 for char in input_string if char.isupper()),
+        "lower": sum(1 for char in input_string if char.islower()),
+        "punct": sum(1 for char in input_string if char in punctuation),
+        "spaces": sum(
+            1 for char in input_string if char.isspace()
+        ),  # inclut espaces, tabulations, retours à la ligne, etc.
+        "digits": sum(1 for char in input_string if char.isdigit()),
     }
     return counts
+
 
 def display_character_counts(input_string):
     """
@@ -37,6 +41,7 @@ def display_character_counts(input_string):
     print(f"{counts['punct']} punctuation marks")
     print(f"{counts['spaces']} spaces")
     print(f"{counts['digits']} digits")
+
 
 def main():
     """
