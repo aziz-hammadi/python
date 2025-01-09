@@ -2,7 +2,6 @@
 import sys
 from ft_filter import ft_filter
 
-
 def main():
     """
     The main function that accepts two arguments: a string S and an integer N.
@@ -11,24 +10,25 @@ def main():
     If the number of arguments is not two or if any argument has the wrong type,
     it raises an AssertionError.
     """
-    # Ensure correct number of arguments
-    if len(sys.argv) != 3:
-        raise AssertionError("AssertionError: the arguments are bad")
+    try:
+        # check argument
+        assert len(sys.argv) == 3, "the arguments are bad"
 
-    # Unpack and validate arguments
-    S, N = sys.argv[1], sys.argv[2]
-    assert N.isdigit(), "AssertionError: The second argument must be an integer."
-    N = int(N)
+        # conformite arguments
+        S, N = sys.argv[1], sys.argv[2]
+        assert N.isdigit(), "The second argument must be an integer."
+        N = int(N)
 
-    # Split the string into words
-    words = S.split()
+        # parsing
+        words = S.split()
+        filtered_words = ft_filter(lambda word: len(word) > N, words)
 
-    # Use lambda and ft_filter to filter words longer than N
-    filtered_words = ft_filter(lambda word: len(word) > N, words)
+        # affiche mots filtre selon les conditions 
+        print(list(filtered_words))
 
-    # Output the filtered words
-    print(filtered_words)
-
+    except AssertionError as error:
+        print(f"AssertionError: {error}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
