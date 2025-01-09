@@ -15,8 +15,8 @@ def count_characters(input_string):
         'upper': sum(1 for char in input_string if char.isupper()),
         'lower': sum(1 for char in input_string if char.islower()),
         'punctuation': sum(1 for char in input_string if char in string.punctuation),
-        'spaces': sum(1 for char in input_string if char == ' '),
-        'digits': sum(1 for char in input_string if char.isdigit())
+        'spaces': sum(1 for char in input_string if char.isspace()),  # inclut espaces, tabulations, retours à la ligne, etc.
+        'digits': sum(1 for char in input_string if char.isdigit()),
     }
     return counts
 
@@ -40,15 +40,23 @@ def main():
     """
     Main function to handle user input and execute the program.
     """
-    if len(sys.argv) > 2:
-        print("AssertionError: Too many arguments provided.")
+    try:
+        # Remplace le bloc if par un assert
+        assert len(sys.argv) <= 2, "more than one argument are provided"
+    except AssertionError as e:
+        print(f"AssertionError: {e}")
         sys.exit(1)
 
     if len(sys.argv) == 2:
         input_string = sys.argv[1]
     else:
-        input_string = input("What is the text to count?\n")
-
+        input_string = ""
+        while True:
+            try:
+                line = input()
+                input_string += line + "\n"
+            except EOFError:
+                break  # End input on CTRL+D
     display_character_counts(input_string)
 
 if __name__ == "__main__":
