@@ -52,19 +52,11 @@ def main():
     if len(sys.argv) == 2:
         input_string = sys.argv[1]
     else:
-        print("Please enter the text to count, or use CTRL+D to finish.")
-        input_string = ""
-        while True:
-            try:
-                line = input()
-                input_string += line + "\n"
-            except EOFError:
-                break  # End input on CTRL+D
-            except KeyboardInterrupt:
-                break  # End input on CTRL+C
-            print("Continue entering text... CTRL+D to finish.")
+        print("What is the text to count?")
+        input_string = sys.stdin.read()
 
     display_character_counts(input_string)
+
 
 if __name__ == "__main__":
     main()
