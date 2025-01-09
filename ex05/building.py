@@ -43,7 +43,6 @@ def main():
     Main function to handle user input and execute the program.
     """
     try:
-        # Remplace le bloc if par un assert
         assert len(sys.argv) <= 2, "more than one argument are provided"
     except AssertionError as e:
         print(f"AssertionError: {e}")
