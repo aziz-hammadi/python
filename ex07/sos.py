@@ -38,7 +38,6 @@ NESTED_MORSE = {
     "9": "----.",
 }
 
-
 def encode_to_morse(input_string):
     """
     Encode a string into Morse code.
@@ -48,16 +47,17 @@ def encode_to_morse(input_string):
 
     Returns:
     str: The encoded Morse code representation.
-
-    Raises:
-    AssertionError: If input_string is not a string.
     """
-    assert isinstance(input_string, str), "AssertionError: the arguments are bad"
+    assert isinstance(input_string, str), "Argument is not a string"
+    
     try:
-        return " ".join(NESTED_MORSE[char.upper()] for char in input_string)
+        encoded_message = " ".join(NESTED_MORSE[char.upper()] for char in input_string if char.upper() in NESTED_MORSE)
+        
+        assert len(encoded_message) > 0, "Invalid character(s) in input string"
+        
+        return encoded_message
     except KeyError:
-        raise AssertionError("AssertionError: the arguments are bad")
-
+        raise AssertionError("Invalid character(s) in input string")
 
 def main():
     """
@@ -65,15 +65,13 @@ def main():
     """
     import sys
 
-    if len(sys.argv) != 2:
-        print("AssertionError: the arguments are bad")
-        sys.exit(1)
     try:
+        assert len(sys.argv) == 2, "Incorrect number of arguments"
         encoded_message = encode_to_morse(sys.argv[1])
         print(encoded_message)
     except AssertionError as e:
-        print(e)
-
+        print(f"AssertionError: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
