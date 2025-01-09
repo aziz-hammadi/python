@@ -1,6 +1,4 @@
 import sys
-import string
-
 
 def count_characters(input_string):
     """
@@ -12,17 +10,17 @@ def count_characters(input_string):
     Returns:
     dict: A dictionary containing counts of character types.
     """
+
+    punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
     counts = {
-        "upper": sum(1 for char in input_string if char.isupper()),
-        "lower": sum(1 for char in input_string if char.islower()),
-        "ponct": sum(1 for char in input_string if char in string.punct),
-        "spaces": sum(
-            1 for char in input_string if char.isspace()
-        ),  # inclut espaces, tabulations, retours à la ligne, etc.
-        "digits": sum(1 for char in input_string if char.isdigit()),
+        'upper': sum(1 for char in input_string if char.isupper()),
+        'lower': sum(1 for char in input_string if char.islower()),
+        'punct': sum(1 for char in input_string if char in punctuation),
+        'spaces': sum(1 for char in input_string if char.isspace()),  # inclut espaces, tabulations, retours à la ligne, etc.
+        'digits': sum(1 for char in input_string if char.isdigit()),
     }
     return counts
-
 
 def display_character_counts(input_string):
     """
@@ -36,10 +34,9 @@ def display_character_counts(input_string):
     print(f"The text contains {total_chars} characters:")
     print(f"{counts['upper']} upper letters")
     print(f"{counts['lower']} lower letters")
-    print(f"{counts['punctuation']} punctuation marks")
+    print(f"{counts['punct']} punctuation marks")
     print(f"{counts['spaces']} spaces")
     print(f"{counts['digits']} digits")
-
 
 def main():
     """
@@ -55,6 +52,7 @@ def main():
     if len(sys.argv) == 2:
         input_string = sys.argv[1]
     else:
+        print("Please enter the text to count, or use CTRL+D to finish.")
         input_string = ""
         while True:
             try:
@@ -62,8 +60,11 @@ def main():
                 input_string += line + "\n"
             except EOFError:
                 break  # End input on CTRL+D
-    display_character_counts(input_string)
+            except KeyboardInterrupt:
+                break  # End input on CTRL+C
+            print("Continue entering text... CTRL+D to finish.")
 
+    display_character_counts(input_string)
 
 if __name__ == "__main__":
     main()
